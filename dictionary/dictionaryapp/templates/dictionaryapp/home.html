@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<div class="container">
+    <form method="post" >
+        {% csrf_token %}
+        <input type="text" placeholder="Search" name ="word">
+        <button type="submit"> Submit </button>
+   </form >
+   {% if infos.word and infos.antonyms %}
+   <div>  
+       <lu>
+           <li>
+              <b> {{infos.word }}  </b> 
+           </li>
+            <li>
+               <b>  </b>   
+            </li>
+            <li>
+               <b> {{infos.phonetic }} </b>
+            </li> 
+            <li>
+                <b> {{infos.antonyms }} </b>
+            </li>
+
+            <a href="{{infos.phonetics }}"> Audio </a>
+            
+          
+            
+       </lu>
+
+   </div>
+   {%endif %}
+
+</div>
