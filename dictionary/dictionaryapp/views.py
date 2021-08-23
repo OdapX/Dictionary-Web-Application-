@@ -17,6 +17,7 @@ def dictionary(request) :
            'synonyms' : data[0]['meanings'][0]['definitions'][0]['synonyms'],
            'antonyms' : data[0]['meanings'][0]['definitions'][0]['antonyms'],
            'partOfSpeech' : data[0]['meanings'][0]['partOfSpeech'],
+           'example' : data[0]['meanings'][0]['definitions'][0]['example'],
            
        }
     else :

@@ -3,55 +3,60 @@
     integrity="sha512-tXycPnL+Yr5QLii76wlGuzgdqLkLEZezX74rw4uIjh1d6XDqT/niMQii5BKPooWAcJPjbILegKuDlBmSilfgvw=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<nav class="navbar navbar-light bg-light" style="height:200px;">
+<nav class="navbar navbar-light bg-light" style="height:100px;">
    <img src ="pics/s.jpg" style="width:50px; height:50px;"> 
 </nav>
+
 <div class="container">
     <form method="post" >
         {% csrf_token %}
-        <input  style="width:1000px; height:55px; border-radius: 10px; margin-top:250px; margin-left:150px;" type="text"  name ="word">
+        <input  style="width:1000px; height:55px; border-radius: 10px; margin-top:160px; margin-left:150px;" type="text"  name ="word">
         <br/>
         <button class="btn btn-primary" type="submit" style="width:500px; height:55px; border-radius: 25px; margin-top:50px; margin-left:370px;"> Submit </button>
    </form >
    {% if infos.word %}
-   <div>  
-       <lu>
-           <li>
-              <b> {{infos.definition }}  </b> 
-           </li>
-            <li>
-               <b> {{infos.partOfSpeech}} </b>   
-            </li>
-            <li>
-               <b> {{infos.phonetic }} </b>
-            </li> 
+<div class="card" style="width: 900px; margin-top:50px; margin-left:150px">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+     
+<h5 class="card-title">
+    {{infos.word}}
+     <small class="text-muted">
+         {{infos.partOfSpeech}} 
+         <a href="{{infos.phonetics }}"> <small class="text-muted"> {{infos.phonetic }} </small> </a>
+    
+    </small> 
+<hr/>
+</h5>
 
-            <li>
-                <b> antonyms :  </b>
-                {% for antonym in infos.antonyms %}
-            
-                <b> {{antonym }} </b>
-            
-                {% endfor %}
-            </li>
-           
-
-            <li>  
-                <b> Synonyms </b>
-            {% for synonym in infos.synonyms %}
-            
-                <b>   {{synonym }} </b>
-            
+        <p class="card-text"> <strong> {{infos.definition }}  </strong> </p>
+        <hr/>
+        <h6 class="card-title"> Example </h6>
+        <p class="card-text"> <strong> {{infos.example }} </strong> </p>
+        <hr />
+        <h6 class="card-title"> Synonyms </h6> 
+        <ul>   
+        {% for synonym in infos.synonyms %}
+         
+        <li> {{synonym }} </li>
+        
+        {% endfor %}
+        </ul>
+        <hr />
+        <h6 class="card-title"> Antonyms </h6>
+        <ul>
+            {% for antonym in infos.antonyms %}
+        
+            <li> {{antonym }} </li>
+        
             {% endfor %}
-            </li>
-
-            <a href="{{infos.phonetics }}"> Audio </a>
-            
-          
-            
-       </lu>
-
+        </ul>
+      
+    </div>
+</div>
+     
    </div>
    {%endif %}
+   
 
 </div>
