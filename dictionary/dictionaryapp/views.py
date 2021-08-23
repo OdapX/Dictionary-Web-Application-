@@ -7,6 +7,8 @@ def dictionary(request) :
     word = request.POST.get('word')
     if(request.method == 'POST') :
         data_from_api = urllib.request.urlopen('https://api.dictionaryapi.dev/api/v2/entries/en/'+word).read()
+        image_from_api= urllib.request.urlopen('https://api.unsplash.com/search/photos/?client_id=Pj9k8NYupW64ieiy41VqFtLgr6dXqE4Fyj8zY7ql4V4&query='+word).read()
+        image_url = json.loads(image_from_api) 
         data = json.loads(data_from_api) 
         infos = {
            'word':data[0]['word'],
@@ -19,6 +21,7 @@ def dictionary(request) :
            'antonyms' : data[0]['meanings'][0]['definitions'][0]['antonyms'],
            'partOfSpeech' : data[0]['meanings'][0]['partOfSpeech'],
            'example' : data[0]['meanings'][0]['definitions'][0]['example'],
+           'image_url': image_url['results'][0]['urls']['raw']
            
        }
     else :
