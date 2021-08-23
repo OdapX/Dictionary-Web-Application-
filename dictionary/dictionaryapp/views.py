@@ -10,10 +10,13 @@ def dictionary(request) :
         data = json.loads(data_from_api) 
         infos = {
            'word':data[0]['word'],
+           'definition' : data[0]['meanings'][0]['definitions'][0]['definition'],
            'phonetic':data[0]['phonetic'],
            'phonetics':data[0]['phonetics'][0]['audio'],
-           
+           'origin':data[0]['origin'],
+           'synonyms' : data[0]['meanings'][0]['definitions'][0]['synonyms'],
            'antonyms' : data[0]['meanings'][0]['definitions'][0]['antonyms'],
+           'partOfSpeech' : data[0]['meanings'][0]['partOfSpeech'],
            
        }
     else :

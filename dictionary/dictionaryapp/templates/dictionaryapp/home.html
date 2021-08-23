@@ -1,24 +1,48 @@
 <!DOCTYPE html>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.0/cerulean/bootstrap.min.css"
+    integrity="sha512-tXycPnL+Yr5QLii76wlGuzgdqLkLEZezX74rw4uIjh1d6XDqT/niMQii5BKPooWAcJPjbILegKuDlBmSilfgvw=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<nav class="navbar navbar-light bg-light" style="height:200px;">
+   <img src ="pics/s.jpg" style="width:50px; height:50px;"> 
+</nav>
 <div class="container">
     <form method="post" >
         {% csrf_token %}
-        <input type="text" placeholder="Search" name ="word">
-        <button type="submit"> Submit </button>
+        <input  style="width:1000px; height:55px; border-radius: 10px; margin-top:250px; margin-left:150px;" type="text"  name ="word">
+        <br/>
+        <button class="btn btn-primary" type="submit" style="width:500px; height:55px; border-radius: 25px; margin-top:50px; margin-left:370px;"> Submit </button>
    </form >
-   {% if infos.word and infos.antonyms %}
+   {% if infos.word %}
    <div>  
        <lu>
            <li>
-              <b> {{infos.word }}  </b> 
+              <b> {{infos.definition }}  </b> 
            </li>
             <li>
-               <b>  </b>   
+               <b> {{infos.partOfSpeech}} </b>   
             </li>
             <li>
                <b> {{infos.phonetic }} </b>
             </li> 
+
             <li>
-                <b> {{infos.antonyms }} </b>
+                <b> antonyms :  </b>
+                {% for antonym in infos.antonyms %}
+            
+                <b> {{antonym }} </b>
+            
+                {% endfor %}
+            </li>
+           
+
+            <li>  
+                <b> Synonyms </b>
+            {% for synonym in infos.synonyms %}
+            
+                <b>   {{synonym }} </b>
+            
+            {% endfor %}
             </li>
 
             <a href="{{infos.phonetics }}"> Audio </a>
