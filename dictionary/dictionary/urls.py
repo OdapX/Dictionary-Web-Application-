@@ -20,4 +20,7 @@ from dictionaryapp import views as dic_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',dic_views.dictionary,name='main_app'),
+
 ]
+handler404= 'dictionaryapp.views.error_404_view'
+
